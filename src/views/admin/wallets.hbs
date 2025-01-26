@@ -1,0 +1,156 @@
+<aside class="sidebar sidebar-default navs-rounded">
+    {{> admin/sidebar}}
+</aside>
+
+<main class="main-content">
+    {{> navbar}}
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title">لیست کیف پول‌های تتر</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>آدرس HEX</th>
+                            <th>آدرس Base58</th>
+                            <th>Private Key</th>
+                            <th>موجودی</th>
+                            <th>وضعیت</th>
+                            <th>تاریخ ایجاد</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each wallets}}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <span class="text-truncate" style="max-width: 150px;">{{this.addressHEX}}</span>
+                                    <button class="btn btn-sm btn-link" onclick="copyToClipboard('{{this.addressHEX}}')">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <span class="text-truncate" style="max-width: 150px;">{{this.addressBase58}}</span>
+                                    <button class="btn btn-sm btn-link" onclick="copyToClipboard('{{this.addressBase58}}')">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <span class="text-truncate" style="max-width: 150px;">{{this.privateKey}}</span>
+                                    <button class="btn btn-sm btn-link" onclick="copyToClipboard('{{this.privateKey}}')">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>{{this.balance}} USDT</td>
+                            <td>
+                                {{#if (eq this.status "active")}}
+                                <span class="badge bg-success">فعال</span>
+                                {{else}}
+                                <span class="badge bg-warning">غیرفعال</span>
+                                {{/if}}
+                            </td>
+                            <td>{{formatDate this.createdAt}}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-primary" onclick="refreshBalance('{{this.addressHEX}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.5 10C14.5 12.2091 12.7091 14 10.5 14C8.29086 14 6.5 12.2091 6.5 10C6.5 7.79086 8.29086 6 10.5 6C12.7091 6 14.5 7.79086 14.5 10Z" stroke="currentColor" stroke-width="1.5"/>
+                                            <path d="M16.5 21.0001H4.5C3.67157 21.0001 3 20.3285 3 19.5001V8.50006C3 7.67163 3.67157 7.00006 4.5 7.00006H16.5C17.3284 7.00006 18 7.67163 18 8.50006V19.5001C18 20.3285 17.3284 21.0001 16.5 21.0001Z" stroke="currentColor" stroke-width="1.5"/>
+                                        </svg>
+                                    </button>
+                                    {{#if (eq this.status "active")}}
+                                    <button class="btn btn-sm btn-warning" onclick="deactivateWallet('{{this.addressHEX}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.07227 2V2C8.07227 2.74048 8.68475 3.34076 9.44023 3.34076H10.4968C11.6624 3.34492 12.6065 4.27026 12.6118 5.41266V6.08771" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M5 13L19 13" stroke="currentColor" stroke-width="1.5" stroke-transform="rotate(45 12 12)"></path>
+                                        </svg>
+                                    </button>
+                                    {{else}}
+                                    <button class="btn btn-sm btn-success" onclick="activateWallet('{{this.addressHEX}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.84819 12.314V16.059" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M10.7591 14.1868H6.93799" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
+                                    {{/if}}
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('کپی شد!');
+        });
+    }
+
+    function refreshBalance(address) {
+        fetch(`/admin/wallets/${address}/refresh-balance`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('خطا در بروزرسانی موجودی');
+            }
+        });
+    }
+
+    function activateWallet(address) {
+        if (confirm('آیا از فعال‌سازی این کیف پول اطمینان دارید؟')) {
+            fetch(`/admin/wallets/${address}/activate`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('خطا در فعال‌سازی کیف پول');
+                }
+            });
+        }
+    }
+
+    function deactivateWallet(address) {
+        if (confirm('آیا از غیرفعال‌سازی این کیف پول اطمینان دارید؟')) {
+            fetch(`/admin/wallets/${address}/deactivate`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('خطا در غیرفعال‌سازی کیف پول');
+                }
+            });
+        }
+    }
+    </script>
+</main>

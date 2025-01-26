@@ -1,0 +1,122 @@
+<aside class="sidebar sidebar-default navs-rounded">
+    {{> admin/sidebar}}
+</aside>
+
+<main class="main-content">
+    {{> navbar}}
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title">لیست تراکنش‌های تتری</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>نام و نام خانوادگی</th>
+                            <th>شماره تماس</th>
+                            <th>مقدار (USDT)</th>
+                            <th>نوع تراکنش</th>
+                            <th>هش تراکنش</th>
+                            <th>شماره بلاک</th>
+                            <th>تاریخ</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each transactions}}
+                        <tr>
+                            <td>{{this.userName}}</td>
+                            <td>{{this.userPhone}}</td>
+                            <td>{{this.amount}}</td>
+                            <td>
+                                {{#if (eq this.type "buy")}}
+                                <span class="badge bg-success">خرید</span>
+                                {{else}}
+                                <span class="badge bg-danger">فروش</span>
+                                {{/if}}
+                            </td>
+                            <td>
+                                {{#if this.hash}}
+                                <a href="https://tronscan.org/#/transaction/{{this.hash}}" target="_blank"
+                                    class="text-truncate" style="max-width: 150px; display: inline-block;">
+                                    {{this.hash}}
+                                </a>
+                                {{else}}
+                                -
+                                {{/if}}
+                            </td>
+                            <td>{{this.blocksNumber}}</td>
+                            <td>{{formatDate this.date}}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    {{#if (eq this.status "pending")}}
+                                    <button class="btn btn-sm btn-success" onclick="approveTransaction('{{this._id}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.84819 12.314V16.059" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M10.7591 14.1868H6.93799" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="rejectTransaction('{{this._id}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5 13L19 13" stroke="currentColor" stroke-width="1.5"
+                                                stroke-transform="rotate(45 12 12)"></path>
+                                            <path d="M5 13L19 13" stroke="currentColor" stroke-width="1.5"
+                                                stroke-transform="rotate(-45 12 12)"></path>
+                                        </svg>
+                                    </button>
+                                    {{/if}}
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function approveTransaction(transactionId) {
+            if (confirm('آیا از تایید این تراکنش اطمینان دارید؟')) {
+                fetch(`/admin/rial-transactions/${transactionId}/approve`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            location.reload();
+                        } else {
+                            alert('خطا در تایید تراکنش');
+                        }
+                    });
+            }
+        }
+
+        function rejectTransaction(transactionId) {
+            if (confirm('آیا از رد این تراکنش اطمینان دارید؟')) {
+                fetch(`/admin/rial-transactions/${transactionId}/reject`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            location.reload();
+                        } else {
+                            alert('خطا در رد تراکنش');
+                        }
+                    });
+            }
+        }
+    </script>
+</main>

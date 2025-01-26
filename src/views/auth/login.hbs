@@ -1,0 +1,60 @@
+
+<div >  
+<div class="wrapper">
+
+<div class="auth-bg">
+   <section class="login-content">
+        <div class="row m-0 align-items-center vh-100"> 
+            <div class="col-lg-6 res-hide">
+            <div class="d-flex justify-content-center">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/tether-usdt-coin-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--crypto-logo-sign-coins-pack-science-technology-illustrations-3478983@0.png" alt="لوگوی تتر" class="img-fluid">
+            </div>
+            </div>           
+            <div class="col-md-12 col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card d-flex justify-content-center mb-0 bg-dark">
+                        <div class="card-body">
+                                <div class="auth-form">
+                                    <h2 class="text-center mb-4">ورود</h2>
+                                        {{> messages/index}}
+                                    <form action="/auth/login" method="post">
+                                        <p class="text-center">در صرافی تتر من ورود کنید</p>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="phone" class="form-control" id="phone" placeholder="091200000">
+                                            <label for="phone">شماره تلفن</label>
+                                        </div>
+                                            <div class="form-floating mb-2">
+                                            <input type="password" name="password" class="form-control" id="password" placeholder="رمز عبور">
+                                            <label for="password">رمز عبور</label>
+                                        </div>
+                                        <div class="d-flex justify-content-between  align-items-center flex-wrap gap-2">
+                                            <div class="form-group mb-0">
+                                                <a href="#page-forgot-password.html">رمز عبور را فراموش کرده‌اید؟</a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button type="submit"  class="btn btn-primary">ادامه</button>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button  class="btn btn-primary">
+                                                <a href="/auth/oauth" style="color: white;">ورود با امیر پی</a>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <div class="new-account mt-3 text-center">
+                                        <p>حساب کاربری ندارید؟ <a class="" href="/auth/register">اینجا کلیک کنید
+                                                برای ثبت‌نام</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </section>
+</div> 
+
+        </div>
+      </div>

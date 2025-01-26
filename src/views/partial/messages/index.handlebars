@@ -1,0 +1,19 @@
+{{#if messages.error}}
+  <div class="alert alert-danger">
+    <ul class="text-right">
+      {{#each messages.error}}
+        <li style="justify-self: right;">{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+
+{{#if messages.success}}
+  <div class="alert alert-success">
+    <ul>
+      {{#each messages.success}}
+        <li style="justify-self: right;">{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}

@@ -1,0 +1,43 @@
+/*!
+*
+* Template: Coinex - Responsive Bootstrap 5 Admin Dashboard Template
+* Author: farham aghdasi
+* Design and Developed by: farham aghdasi
+* NOTE: This file contains the styling for responsive Template.
+*
+*/@media (max-width:1199.98px){.sidebar.sidebar-transparent{background:#fff}}:focus{outline:0}small{color:#bfbfbf}::-webkit-scrollbar{width:8px;height:8px;-webkit-border-radius:20px;border-radius:20px}::-webkit-scrollbar-track{background:#19191a;-webkit-border-radius:20px;border-radius:20px}::-webkit-scrollbar-thumb{background:#313135;-webkit-border-radius:20px;border-radius:20px;-webkit-transition:all .4s ease;-o-transition:all .4s ease;transition:all .4s ease;cursor:pointer}::-webkit-scrollbar-thumb:hover{background:#464649;-webkit-border-radius:20px;border-radius:20px;-webkit-transition:all .4s ease;-o-transition:all .4s ease;transition:all .4s ease}.sign-bg{position:absolute;right:0;top:0}.sign-bg.sign-bg-right{right:auto;left:0}.gradient-main{height:100%;width:100%;-o-object-fit:cover;object-fit:cover}.login-bottom{margin-top:-12.5rem}@media (min-width:1400px){.auth-card{padding:0 6.25rem}}@media (max-width:991.98px){.res-hide{display:none}}@media (max-width:575.98px){.login-header{height:12.5rem!important}.login-bottom{margin-top:-6.25rem}}.auth-bg{margin:0;background:#19191a;height:100vh;position:relative;text-align:center}.auth-bg:before{content:"";position:absolute;top:0;bottom:0;right:0;left:50%;background:#202022;z-index:0}.sign-in-img{position:absolute;right:5%;top:0}@media (max-width:1199.98px){.sign-in-img{left:unset;top:330px}.sign-in-img svg{width:540px!important}}.maintainance-search{margin-right:auto;margin-left:auto;margin-top:1rem}@media (max-width:1199.98px){.sign-up-img2{left:unset;top:unset}.sign-up-img2 svg{width:450px!important}}.sign-up-img2{position:absolute;right:3%;top:5%}.rpw-img1{position:absolute;left:0;top:90px}.rpw-img1 svg{width:600px!important}@media (max-width:1199.98px){.rpw-img1{right:unset;top:385px}.rpw-img1 svg{width:500px!important}}@media (max-width:1199.98px){.rpw{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center}}.lockscreen-img1{position:absolute;left:0;top:15%}@media (max-width:1199.98px){.lockscreen-img1{top:32%}.lockscreen-img1 svg{width:500px!important}}@media (max-width:1199.98px){.lockscreen{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center}}.cm-img1{position:absolute;left:5%;top:5%}@media (max-width:1199.98px){.cm-img1{top:32%}.cm-img1 svg{width:400px!important}}.error-404{position:absolute;left:11%;top:15%}@media (max-width:1199.98px){.error-404{top:28%;left:3%}.error-404 svg{width:450px!important}}.error-500{position:absolute;left:10%;top:10%}@media (max-width:1199.98px){.error-500{top:28%;left:3%}.error-500 svg{width:450px!important}}@media (max-width:991.98px){.maintenance-img svg{display:none}}@media (max-width:575.98px){.maintenance-img{margin-top:25%}}.img-right-banner-top{width:89%}.form-control::-webkit-input-placeholder{color:#878787}.form-control::-moz-placeholder{color:#878787}.form-control::-ms-input-placeholder{color:#878787}.form-control::placeholder{color:#878787}input.form-control::-webkit-calendar-picker-indicator{-webkit-filter:contrast(0);filter:contrast(0)}
+
+.wallet-info code {
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+.btn i {
+    font-size: 0.9rem;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 15px;
+}
+
+.alert {
+    border-radius: 10px;
+}

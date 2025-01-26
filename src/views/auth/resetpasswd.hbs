@@ -1,0 +1,52 @@
+
+<div >  
+<div class="wrapper">
+
+<div class="auth-bg">
+   <section class="login-content">
+        <div class="row m-0 align-items-center vh-100"> 
+            <div class="col-lg-6 res-hide">
+            <div class="d-flex justify-content-center">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/tether-usdt-coin-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--crypto-logo-sign-coins-pack-science-technology-illustrations-3478983@0.png" alt="لوگوی تتر" class="img-fluid">
+            </div>
+            </div>           
+            <div class="col-md-12 col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card d-flex justify-content-center mb-0 bg-dark">
+                        <div class="card-body">
+                                <div class="auth-form">
+                                    <h2 class="text-center mb-4">رمز عبور خود را تغییر دهید</h2>
+                                        {{> messages/index}}
+                                    <form action="/auth/login" method="post">
+                                        <p class="text-center">کد تایید و رمز عبور جدید خود را وارد کنید</p>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="otp" class="form-control" id="otp" placeholder="کد تایید را وارد کنید">
+                                            <label for="otp">کد تایید</label>
+                                        </div>
+                                            <div class="form-floating mb-2">
+                                            <input type="password" name="password" class="form-control" id="password" placeholder="رمز عبور">
+                                            <label for="password">رمز عبور</label>
+                                        </div>
+                                        <div class="form-floating mb-2">
+                                            <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="تکرار رمز عبور">
+                                            <label for="confirmPassword">تکرار رمز عبور</label>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button type="submit" onclick="indent()" class="btn btn-primary">ادامه</button>
+                                        </div>
+                      
+                                    </form>
+                              
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </section>
+</div> 
+
+        </div>
+      </div>

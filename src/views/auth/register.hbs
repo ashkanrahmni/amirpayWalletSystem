@@ -1,0 +1,97 @@
+
+      <div >  
+        <div class="wrapper">
+<div class="auth-bg">
+   <section class="login-content">
+        <div class="row m-0 align-items-center vh-100"> 
+            <div class="col-lg-6 res-hide">
+           <div class="d-flex justify-content-center">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/tether-usdt-coin-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--crypto-logo-sign-coins-pack-science-technology-illustrations-3478983@0.png" alt="لوگوی تتر" class="img-fluid">
+            </div>  
+  
+            </div>           
+            <div class="col-md-12 col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card d-flex justify-content-center mb-0 bg-dark">
+                            <div class="card-body">
+                                <div class="auth-form">
+                                    <h2 class="text-center mb-4">ثبت‌نام</h2>
+                                     {{> messages/index}}
+                                    <form action="/auth/register" method="post">
+                                        <p></p>
+                                        <div class="row">
+
+                                                  <div class="col-md-6 mb-4">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="firstName" class="form-control" id="lastName"  placeholder="نام">
+                                                   <label for="lastName">نام خانوادگی</label>
+
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="lastName" class="form-control" id="lastName" placeholder="نام خانوادگی" >
+                                                     <label for="firstName">نام</label>
+
+                                                </div>
+                                            </div>
+                                   
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-floating mb-3">
+                                                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="ایمیل">
+                                                        <label for="email">ایمیل</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="شماره تلفن">
+                                                    <label for="phone">شماره تلفن</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                               <div class="col-md-6 mb-4">
+                                                <div class="form-floating mb-2">
+                                                        <input type="password" name="ConfirmPassword" class="form-control" id="confirmpassword" placeholder="تأیید رمز عبور">
+                                                        <label for="ConfirmPassword">تأیید رمز عبور</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-floating mb-2">
+                                                        <input type="password" name="password" class="form-control" id="password" placeholder="رمز عبور">
+                                                        <label for="password">رمز عبور</label>
+                                                    </div>
+                                            </div>
+                                         
+                                        </div>
+                
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary w-100">ثبت‌نام</button>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <p>یا با حساب‌های دیگر وارد شوید؟</p>
+                                        </div>
+        
+                                    </form>
+                                    <div class="new-account mt-3 text-center">
+                                        <p>حساب کاربری دارید؟ <a class="text-primary" href="/auth/login">وارد شوید</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </section>
+</div> 
+
+        </div>
+      </div>

@@ -1,0 +1,52 @@
+
+<div >  
+<div class="wrapper">
+
+<div class="auth-bg">
+   <section class="login-content">
+        <div class="row m-0 align-items-center vh-100"> 
+            <div class="col-lg-6 res-hide">
+            <div class="d-flex justify-content-center">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/tether-usdt-coin-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--crypto-logo-sign-coins-pack-science-technology-illustrations-3478983@0.png" alt="لوگوی تتر" class="img-fluid">
+            </div>
+            </div>           
+            <div class="col-md-12 col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card d-flex justify-content-center mb-0 bg-dark">
+                        <div class="card-body">
+                                <div class="auth-form">
+                                    <h2 class="text-center mb-4">تایید شماره تلفن {{phone}}</h2>
+                                        {{> messages/index}}
+                                    <form action="/auth/otp" method="post">
+                                        <p class="text-center">در صرافی تتر من خود را تایید کنید</p>
+                                            <div class="form-floating mb-2">
+                                            <input type="text" name="otp" class="form-control" id="otp" placeholder="کد ارسال شده را وارد کنید">
+                                            <label for="otp">کد  تایید</label>
+                                        </div>
+                                        <div class="d-flex justify-content-between  align-items-center flex-wrap gap-2">
+                                            <div class="form-group mb-0">
+                                                <a href="/auth/resend-otp">کد تایید ارسال نشده است؟</a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button type="submit" class="btn btn-primary">ورود</button>
+                                        </div>
+                      
+                                    </form>
+                                    <div class="new-account mt-3 text-center">
+                                        <p>حساب کاربری ندارید؟ <a class="" href="/auth/register">اینجا کلیک کنید
+                                                برای ثبت‌نام</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </section>
+</div> 
+
+        </div>
+      </div>

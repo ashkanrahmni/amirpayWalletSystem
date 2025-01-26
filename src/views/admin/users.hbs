@@ -1,0 +1,199 @@
+<aside class="sidebar sidebar-default navs-rounded">
+    {{> admin/sidebar}}
+</aside>
+
+<main class="main-content">
+    {{> navbar}}
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title">لیست کاربران</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>شناسه</th>
+                            <th>نام</th>
+                            <th>ایمیل</th>
+                            <th>شماره موبایل</th>
+                            <th>وضعیت</th>
+                            <th>تاریخ ثبت نام</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each users}}
+                        <tr>
+                            <td>{{this._id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.phone}}</td>
+                            <td>
+                                {{#if this.isBlocked}}
+                                <span class="badge bg-danger">مسدود شده</span>
+                                {{else}}
+                                <span class="badge bg-success">فعال</span>
+                                {{/if}}
+                            </td>
+                            <td>{{formatDate this.createdAt}}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editUser{{this._id}}">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.7474 20.4429H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.78 3.79479C13.5557 2.86779 14.95 2.73186 15.8962 3.49173C15.9485 3.53296 17.6295 4.83879 17.6295 4.83879C18.669 5.46719 18.992 6.80311 18.3494 7.82259C18.3153 7.87718 8.81195 19.7645 8.81195 19.7645C8.49578 20.1589 8.01583 20.3918 7.50291 20.3973L3.86353 20.443L3.04353 16.9723C2.92866 16.4843 3.04353 15.9718 3.3597 15.5773L12.78 3.79479Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
+                                    {{#if this.isBlocked}}
+                                    <button class="btn btn-sm btn-success" onclick="unblockUser('{{this._id}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.84819 12.314V16.059" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M10.7591 14.1868H6.93799" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M15.3661 12.428H15.259" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M17.1795 16.0027H17.0725" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M8.07227 2V2C8.07227 2.74048 8.68475 3.34076 9.44023 3.34076H10.4968C11.6624 3.34492 12.6065 4.27026 12.6118 5.41266V6.08771" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4283 21.9625C13.4231 22.0134 10.473 22.0113 7.57275 21.9625C4.3535 21.9625 2 19.6663 2 16.5112V11.8616C2 8.70651 4.3535 6.41029 7.57275 6.41029C10.4889 6.36044 13.4411 6.36148 16.4283 6.41029C19.6476 6.41029 22 8.70755 22 11.8616V16.5112C22 19.6663 19.6476 21.9625 16.4283 21.9625Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
+                                    {{else}}
+                                    <button class="btn btn-sm btn-warning" onclick="blockUser('{{this._id}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.07227 2V2C8.07227 2.74048 8.68475 3.34076 9.44023 3.34076H10.4968C11.6624 3.34492 12.6065 4.27026 12.6118 5.41266V6.08771" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4283 21.9625C13.4231 22.0134 10.473 22.0113 7.57275 21.9625C4.3535 21.9625 2 19.6663 2 16.5112V11.8616C2 8.70651 4.3535 6.41029 7.57275 6.41029C10.4889 6.36044 13.4411 6.36148 16.4283 6.41029C19.6476 6.41029 22 8.70755 22 11.8616V16.5112C22 19.6663 19.6476 21.9625 16.4283 21.9625Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M5 13L19 13" stroke="currentColor" stroke-width="1.5" stroke-transform="rotate(45 12 12)"></path>
+                                        </svg>
+                                    </button>
+                                    {{/if}}
+                                    <button class="btn btn-sm btn-danger" onclick="deleteUser('{{this._id}}')">
+                                        <svg width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M20.708 6.23975H3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M17.4406 6.23973C16.6556 6.23973 15.9796 5.68473 15.8256 4.91573L15.5826 3.69973C15.4326 3.13873 14.9246 2.75073 14.3456 2.75073H10.1126C9.53358 2.75073 9.02558 3.13873 8.87558 3.69973L8.63258 4.91573C8.47858 5.68473 7.80258 6.23973 7.01758 6.23973" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Edit User -->
+    {{#each users}}
+    <div class="modal fade" id="editUser{{this._id}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ویرایش کاربر</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserForm{{this._id}}">
+                        <div class="mb-3">
+                            <label class="form-label">نام</label>
+                            <input type="text" class="form-control" name="name" value="{{this.name}}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ایمیل</label>
+                            <input type="email" class="form-control" name="email" value="{{this.email}}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">شماره موبایل</label>
+                            <input type="text" class="form-control" name="mobile" value="{{this.phone}}">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">انصراف</button>
+                    <button type="button" class="btn btn-primary" onclick="updateUser('{{this._id}}')">ذخیره تغییرات</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+    <script>
+    function blockUser(userId) {
+        if (confirm('آیا از مسدود کردن این کاربر اطمینان دارید؟')) {
+            fetch(`/admin/users/${userId}/block`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('خطا در مسدود کردن کاربر');
+                }
+            });
+        }
+    }
+
+    function unblockUser(userId) {
+        if (confirm('آیا از رفع مسدودیت این کاربر اطمینان دارید؟')) {
+            fetch(`/admin/users/${userId}/unblock`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('خطا در رفع مسدودیت کاربر');
+                }
+            });
+        }
+    }
+
+    function deleteUser(userId) {
+        if (confirm('آیا از حذف این کاربر اطمینان دارید؟')) {
+            fetch(`/admin/users/${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('خطا در حذف کاربر');
+                }
+            });
+        }
+    }
+
+    function updateUser(userId) {
+        const form = document.getElementById(`editUserForm${userId}`);
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        fetch(`/admin/users/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('خطا در بروزرسانی اطلاعات کاربر');
+            }
+        });
+    }
+    </script>
+</main>
